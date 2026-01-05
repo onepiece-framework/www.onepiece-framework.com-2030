@@ -1,0 +1,52 @@
+<?php
+/**	op-skeleton-2030:/pass-through.html
+ *
+ * @rebirth    2025-07-20
+ * @license    Apache-2.0
+ * @package    op-skeleton-2030
+ * @copyright  Tomoaki Nagahara
+ */
+
+/**	Declare strict type
+ *
+ */
+declare(strict_types=1);
+
+/**	Namespace
+ *
+ */
+namespace OP;
+
+?>
+<section data-translation="true">
+	<h1>HTML Pass-through</h1>
+	<p>This is HTML Pass-through sample page.</p>
+
+	<h2>What is HTML Pass-through?</h2>
+	<p>HTML pass-through refers to a framework's ability to directly output raw HTML without additional processing. It has the following characteristics:</p>
+	<ol>
+		<li>Controller-less</li>
+		<li>Can execute PHP scripts</li>
+		<li>Automatic layout rendering</li>
+	</ol>
+
+	<h3>Controller-less</h3>
+	<p>
+		Traditional frameworks required creating empty controllers and methods even for simple HTML pages that didn't need any backend logic.  
+		With the ONEPIECE Framework, files with an `.html` extension are directly output when accessed, eliminating the need for empty controllers or methods.
+	</p>
+
+	<h3>Can Execute PHP Scripts</h3>
+	<p>
+		Some frameworks offer an HTML pass-through feature, but in most cases, they simply output the HTML files as-is without the ability to execute any code.  
+		The HTML pass-through feature in the ONEPIECE Framework allows PHP scripts to be executed.  
+		Since it can access the framework’s functionality, it’s possible to output results from database queries.
+		Of course, plain PHP can also be executed.
+	</p>
+
+	<h3>Automatic Layout Rendering</h3>
+	<p>
+		In many frameworks, HTML pass-through does not include layout rendering. Developers and designers have to manually add or update headers, footers, and other common page elements.  
+		The ONEPIECE Framework automatically renders headers, footers, side menus, and breadcrumb navigation—even when using HTML pass-through.
+	</p>
+</section>
