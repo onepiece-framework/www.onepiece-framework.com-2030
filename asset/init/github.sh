@@ -27,4 +27,4 @@ sed -i -e "s/onepiece-framework/${USER_NAME}/g" .gitmodules
 git submodule sync
 
 # Notice
-echo "\nNOTICE: This script does not support nested submodules.\n\n";
+echo "NOTICE: This script does not support nested submodules.";
