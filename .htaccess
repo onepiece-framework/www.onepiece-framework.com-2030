@@ -1,0 +1,73 @@
+
+## op-skeleton-2030:/.htaccess
+#
+# @porting    2025-07-09
+# @version    1.0
+# @package    op-skeleton-2030
+# @author     Tomoaki Nagahara
+# @copyright  Tomoaki Nagahara All right reserved.
+#
+
+## Dispatch settings.
+#
+#  .htaccess "RewriteEngine" value is change to "On" from "Off".
+#  If used Apache's version is not v2.4, Change to [L] from [END].
+#
+<IfModule mod_rewrite.c>
+	# "RewriteEngine" value is change to "On" from "Off" for rewrite is started.
+	RewriteEngine Off
+
+	# This should be the path from the document root to the app root.
+	RewriteBase /
+
+	# If file does not exists, Dispatched to app.php.
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule . app.php [END]
+
+	# Dispatch only if matches specific extensions.
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteCond %{REQUEST_URI} \.(php|html|js|css|txt)$
+	RewriteRule . app.php [END]
+</IfModule>
+
+## Apache's settings.
+#
+DirectoryIndex index.php index.html
+ErrorDocument  404 https://onepiece-framework.com/reference/bootstrap/app
+
+# Deny access .git directory and files.
+RedirectMatch  404 /\.git
+
+# Deny access dot files.
+RedirectMatch  404 /\..*$
+
+## onepiece-framework's execute option.
+#
+Options +FollowSymLinks +ExecCGI -Indexes
+
+## If do not installed mod_rewrite.
+#
+<IfModule !mod_rewrite.c>
+	RedirectMatch 302 .* https://onepiece-framework.com/reference/bootstrap/rewrite
+</IfModule>
+
+## Deny access this files.
+#
+<Files ~ "\.(dat|log|csv|sql|md)$">
+	deny from all
+</Files>
+
+## Deny access dot files.
+#  Not include directory name. Ex: .git/
+#
+<FilesMatch "^\.">
+	deny from all
+</FilesMatch>
+
+# Cache setting.
+<IfModule mod_headers.c>
+  <Files ~ "\.(gif|jpe?g|png|ico)$">
+    Header set Cache-Control "max-age=3600, s-maxage=86400, public"
+  </Files>
+</IfModule>
+
