@@ -18,7 +18,8 @@ declare(strict_types=0);
  */
 namespace OP\SKELETON\INIT;
 
-//	...
+//	Include function files.
+require_once(__DIR__.'/Request.php');
 require_once(__DIR__.'/GitSubmoduleConfig.php');
 require_once(__DIR__.'/GitCheckoutTargetBranch.php');
 
@@ -31,6 +32,13 @@ function GitSubmoduleForeach( string $git_root )
 {
 	//	Save current directory.
 	$save_dir = getcwd();
+
+	//	Change the owner name on GitHub.
+	if( $github = Request('github') ){
+		`bash {$git_root}/asset/init/github.sh {$github}`;
+		`git submodule sync`;
+		`git submodule foreach git fetch`;
+	}
 
 	//	Get git submodule config.
 	$configs = GitSubmoduleConfig('.gitmodules', $git_root);
