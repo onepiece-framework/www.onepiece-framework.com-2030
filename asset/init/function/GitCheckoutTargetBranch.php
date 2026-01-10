@@ -28,9 +28,16 @@ require_once(__DIR__.'/Execute.php');
  */
 function GitCheckoutTargetBranch( string $remote, string $branch )
 {
+	//	Check current branch.
+	if( $current_branch = trim(`git branch --show-current` ?? '') ){
+		if( $current_branch === $branch ){
+			return;
+		}
+	}
+
 	//	Check if branch exists.
 	if(!Execute("git show-ref --verify refs/remotes/{$remote}/{$branch}") ){
-		Execute("git checkout {$remote}/main -b {$branch}");
+	//	Execute("git checkout {$remote}/main -b {$branch}");
 		echo "\n * This branch has not been exist: {$remote}/{$branch} \n\n";
 		return;
 	}
