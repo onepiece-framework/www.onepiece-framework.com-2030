@@ -20,7 +20,9 @@ namespace OP\SKELETON\INIT;
 
 //	Include function files.
 require_once(__DIR__.'/Request.php');
+require_once(__DIR__.'/GitSubmoduleGithub.php');
 require_once(__DIR__.'/GitSubmoduleConfig.php');
+require_once(__DIR__.'/GitSubmoduleRepository.php');
 require_once(__DIR__.'/GitCheckoutTargetBranch.php');
 
 /**	Git submodule foreach.
@@ -33,18 +35,20 @@ function GitSubmoduleForeach( string $git_root )
 	//	Save current directory.
 	$save_dir = getcwd();
 
-	//	Change the owner name on GitHub.
-	if( $github = Request('github') ){
-		`bash {$git_root}/asset/init/github.sh {$github}`;
-		`git submodule sync`;
-		`git submodule foreach git fetch`;
-	}
+	//	Change the github owner name.
+	GitSubmoduleGithub();
+
+	//	Set hooks path.
+	$hooks_path = _ROOT_GIT_.'/asset/init/hooks/';
+
+	//	Download nested submodules.
+	`git submodule update --init`;
+
+	//	Main repository.
+	`git config core.hooksPath {$hooks_path}`;
 
 	//	Get git submodule config.
 	$configs = GitSubmoduleConfig('.gitmodules', $git_root);
-
-	//	...
-	$hooks_path = "{$git_root}/asset/init/hooks/";
 
 	//	Switch branch.
 	foreach( $configs as $config ){
@@ -57,14 +61,17 @@ function GitSubmoduleForeach( string $git_root )
 		chdir("$git_root/$path");
 		echo getcwd() ." --> {$branch}". PHP_EOL;
 
+		//	Add local repository.
+		GitSubmoduleRepository();
+
 		//	...
 		GitCheckoutTargetBranch( $remote, $branch );
 
-		//	...
+		//	Each submodule.
 		`git config core.hooksPath {$hooks_path}`;
 
 		//	...
-		if( $config['submodule'] ?? null ){
+		if( file_exists('.gitmodules') ){
 			GitSubmoduleForeach("$git_root/$path");
 		}
 	}
