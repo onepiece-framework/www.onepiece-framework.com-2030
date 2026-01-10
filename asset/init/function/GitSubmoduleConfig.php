@@ -48,7 +48,10 @@ function GitSubmoduleConfig( string $file_name, string $git_root ) : array
 		}
 
 		//	...
-		$config[$name]['submodule'] = file_exists( $config[$name]['path'].'/'.$file_name ) ? '1': '0';
+		$path = $config[$name]['path'].'/'.$file_name;
+
+		//	...
+		$config[$name]['submodule'] = file_exists($path) ? '1': '0';
 	}
 	}
 
