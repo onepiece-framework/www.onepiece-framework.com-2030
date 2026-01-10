@@ -3,6 +3,10 @@
  *
  * Init Git managed submodule
  *
+ * <pre>
+ * php asset/init/submodules.php github=github_account local=1 dir=ssh:~/repo/
+ * </pre>
+ *
  * @created    2024-04-16
  * @license    Apache-2.0
  * @package    op-skeleton
@@ -13,7 +17,7 @@
 /**	Declare strict type
  *
  */
-declare(strict_types=0);
+declare(strict_types=1);
 
 /**	Namespace
  *
@@ -23,31 +27,16 @@ namespace OP\SKELETON\INIT;
 //	Include
 require_once(__DIR__.'/function/GitSubmoduleForeach.php');
 
-//	Get git root.
-$git_root = trim(`git rev-parse --show-toplevel`);
-
-//	Set hooks path.
-$hooks_path = "{$git_root}/asset/init/hooks/";
+//	Get main repository path.
+define('_ROOT_GIT_', trim(`git rev-parse --show-toplevel`));
 
 //	Change directory to git root.
-chdir($git_root);
+chdir(_ROOT_GIT_);
 
 //	Include op.php
 (function($git_root){
 	include("{$git_root}/asset/config/op.php");
-})($git_root);
-
-//	Download nested submodules.
-`git submodule update --init --recursive`;
-
-//	Main repository.
-`git config core.hooksPath {$hooks_path}`;
-
-//	Submodules.
-`git submodule foreach git config core.hooksPath {$hooks_path}`;
+})(_ROOT_GIT_);
 
 //	Git submodule foreach.
-GitSubmoduleForeach( $git_root );
-
-//	Initializing a non-Git managed submodule.
-require_once(__DIR__.'/update.php');
+GitSubmoduleForeach(_ROOT_GIT_);
