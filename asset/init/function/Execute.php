@@ -32,7 +32,7 @@ function Execute( string $comand ) : bool
 
 	//	...
 	if( $status ){
-		echo "\n{$comand} --> {$status}\n\n";
+		echo "\n ERROR: {$comand}\n\n";
 		echo join("\n", $output) . PHP_EOL . PHP_EOL;
 	}
 
