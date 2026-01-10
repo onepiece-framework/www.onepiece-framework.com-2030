@@ -40,3 +40,6 @@ chdir(_ROOT_GIT_);
 
 //	Git submodule foreach.
 GitSubmoduleForeach(_ROOT_GIT_);
+
+//	Unit, Module, Layout, WebPack
+include(__DIR__.'/update.php');
