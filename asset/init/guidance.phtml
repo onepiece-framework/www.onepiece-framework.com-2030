@@ -1,0 +1,40 @@
+<?php
+/** op-skeleton-2030:/asset/init/guidance.phtml
+ *
+ * @genesis    2024-11-24  op-skeleton-2020
+ * @copied     2025-06-08  op-skeleton-2030
+ * @version    1.0
+ * @package    op-skeleton-2030
+ * @author     Tomoaki Nagahara
+ * @copyright  Tomoaki Nagahara All right reserved.
+ */
+/* @var $usage string */
+?>
+<html>
+	<head>
+		<style><?= file_get_contents(__DIR__.'/guidance.css') ?></style>
+
+		<!-- Stylesheet -->
+		<link type="text/css" href="https://2030.onepiece-framework.com/webpack/css/Translate.css" rel="stylesheet">
+
+		<!-- JavaScript -->
+		<script type="text/javascript" src="https://2030.onepiece-framework.com/webpack/js/Translate.js" defer></script>
+
+		<!-- Title -->
+		<title>ONEPIECE Framework Installation Guide</title>
+	</head>
+	<body>
+		<main>
+			<div data-translation="true">
+				<h1>Git submodules has not been initialized</h1>
+				<p>Please enter the following command:</p>
+			</div>
+			<pre><code><?php echo trim($usage) ?></code></pre>
+		</main>
+
+		<aside>
+			<hr/>
+			<div id="op-translate-language-area"></div>
+		</aside>
+	</body>
+</html>
