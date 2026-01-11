@@ -118,6 +118,11 @@ jobs:
         run: bash asset/init/github.sh ${{ github.repository_owner }}
       - run: echo "Repository owner is $GITHUB_REPOSITORY_OWNER"
 
+      - name: Set git identity
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
       - name: Init
         run: |
           if [ "$GITHUB_REPOSITORY_OWNER" = "TomoakiNagahara" ]; then
