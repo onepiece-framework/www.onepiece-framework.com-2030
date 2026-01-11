@@ -113,12 +113,18 @@ jobs:
       # if: ${{ env.ACCOUNT != '' }}
       # run: echo '${{ env.ACCOUNT }}' # For debug
       # run: sh asset/git/submodule/github.sh ${{ secrets.ACCOUNT }}
+
         if: ${{ github.repository_owner == 'TomoakiNagahara' }}
         run: bash asset/init/github.sh ${{ github.repository_owner }}
       - run: echo "Repository owner is $GITHUB_REPOSITORY_OWNER"
 
       - name: Init
-        run: php asset/init/submodules.php
+        run: |
+          if [ "$GITHUB_REPOSITORY_OWNER" = "TomoakiNagahara" ]; then
+            php asset/init/submodules.php "github=$GITHUB_REPOSITORY_OWNER"
+          else
+            php asset/init/submodules.php
+          fi
 
       - name: CI
         run: php -d display_errors=1 -d error_reporting=E_ALL ./cicd display=1 cd=0
