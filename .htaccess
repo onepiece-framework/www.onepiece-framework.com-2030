@@ -15,7 +15,7 @@
 #
 <IfModule mod_rewrite.c>
 	# "RewriteEngine" value is change to "On" from "Off" for rewrite is started.
-	RewriteEngine Off
+	RewriteEngine On
 
 	# This should be the path from the document root to the app root.
 	RewriteBase /
