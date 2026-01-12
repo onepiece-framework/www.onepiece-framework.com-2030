@@ -19,7 +19,7 @@ namespace OP;
 
 //	...
 return [
-	'skip'   =>  1,
+	'skip'   =>  0,
 	'path'   => 'public_html',
 	'url'    => 'https://github.com/onepiece-framework/op-public-html.git',
 ];
