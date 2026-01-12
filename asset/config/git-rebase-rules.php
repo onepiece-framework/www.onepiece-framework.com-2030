@@ -35,6 +35,7 @@ return [
 		'2028: ',
 		'2029: ',
 		'2030: ',
+		'onepiece: ',
 	],
 	//	Deny commit message word.
 	'deny'   => [
