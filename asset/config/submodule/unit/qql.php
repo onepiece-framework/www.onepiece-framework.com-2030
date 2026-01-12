@@ -19,6 +19,6 @@ namespace OP;
 
 //	...
 return [
-	'skip'   => 1,
+	'skip'   =>  0,
 	'url'    => 'https://github.com/onepiece-framework/op-unit-qql.git',
 ];
