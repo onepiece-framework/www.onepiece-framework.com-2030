@@ -34,6 +34,9 @@ require_once(__DIR__.'/Request.php');
  */
 function GitSubmoduleRepository()
 {
+	//	Save current branch.
+	$current_branch = trim(`git branch --show-current` ?? '');
+
 	//	Check the URL.
 	if(!$url = `git remote get-url origin` ){
 		return;
@@ -68,5 +71,12 @@ function GitSubmoduleRepository()
 		$url = "{$host}:{$dir}/{$path}";
 		`git remote add {$host} {$url}`;
 		`git fetch {$host}`;
+	}
+
+	//	Recovery branch.
+	if( $current_branch ){
+		if( $current_branch !== trim(`git branch --show-current` ?? '') ){
+			`git switch {$current_branch}`;
+		}
 	}
 }
