@@ -25,7 +25,9 @@ declare(strict_types=1);
 namespace OP\SKELETON\INIT;
 
 //	Include
+require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleForeach.php');
+require_once(__DIR__.'/function/GitSubmoduleRepository.php');
 
 //	Get main repository path.
 define('_ROOT_GIT_', trim(`git rev-parse --show-toplevel`));
@@ -37,6 +39,12 @@ chdir(_ROOT_GIT_);
 (function($git_root){
 	include("{$git_root}/asset/config/op.php");
 })(_ROOT_GIT_);
+
+//	Change the github owner name.
+GitSubmoduleGithub();
+
+//	Add another remote.
+GitSubmoduleRepository();
 
 //	Git submodule foreach.
 GitSubmoduleForeach(_ROOT_GIT_);
