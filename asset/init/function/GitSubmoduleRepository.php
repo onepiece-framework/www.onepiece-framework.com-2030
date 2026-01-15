@@ -34,10 +34,21 @@ require_once(__DIR__.'/Request.php');
  */
 function GitSubmoduleRepository()
 {
-	//	...
+	//	Check the URL.
 	if(!$url = `git remote get-url origin` ){
 		return;
 	}
+
+	//	Check an args.
+	if( Request('local') or Request('ssh') ){
+		//	OK
+	}else{
+		return;
+	}
+
+	//	Init
+	$dir  = Request('dir') ?? '~/repo';
+	$dir  = rtrim($dir, '/');
 	$url  = trim($url);
 	$temp = explode('/', $url);
 	$name = array_pop($temp);
@@ -46,18 +57,16 @@ function GitSubmoduleRepository()
 
 	//	local
 	if( Request('local') ){
-		$dir = Request('dir') ?? '~/repo';
-		$dir = rtrim($dir, '/');
 		$url = "{$dir}/{$path}";
 		`git remote add local {$url}`;
 		`git fetch local`;
+	}
 
-		//	ssh
-		if( Request('ssh') ){
-			$host = Request('host') ?? 'repo';
-			$url = "{$host}:{$dir}/{$path}";
-			`git remote add {$host} {$url}`;
-			`git fetch {$host}`;
-		}
+	//	ssh
+	if( Request('ssh') ){
+		$host = Request('host') ?? 'repo';
+		$url = "{$host}:{$dir}/{$path}";
+		`git remote add {$host} {$url}`;
+		`git fetch {$host}`;
 	}
 }
