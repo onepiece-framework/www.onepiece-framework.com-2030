@@ -4,6 +4,10 @@
  * Init and update a non-Git managed submodules.
  *
  * <pre>
+ * //  Add new repository
+ * php asset/init/update.php github=github_account local=1 dir=/var/git ssh=1 host=arch
+ *
+ * //  Repositories update
  * php asset/init/update.php remote=local pull=0
  * </pre>
  *
@@ -43,6 +47,7 @@ if(!defined('_OP_APP_BRANCH_') ){
 //	Include.
 require_once(__DIR__.'/function/Display.php');
 require_once(__DIR__.'/function/Request.php');
+require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleRepository.php');
 
 //	Get config list.
@@ -87,7 +92,12 @@ function Init( string $type, string $name, array $config ) : bool
 	$url    = $config['url']    ??  null;
 	$path   = $config['path']   ?? $name;
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
-	$dir    = _ROOT_GIT_."/asset/{$type}";
+	//	public_html
+	if( $type === 'public_html' ){
+		$dir  = _ROOT_GIT_;
+	}else{
+		$dir  = _ROOT_GIT_."/asset/{$type}";
+	}
 
 	//	Create directory.
 	if(!file_exists($dir) ){
@@ -104,6 +114,7 @@ function Init( string $type, string $name, array $config ) : bool
 
 	//	Check if URL.
 	if(!$url){
+		echo "\nURL is empty: {$type}, {$name} \n\n";
 		return false;
 	}
 
@@ -120,10 +131,17 @@ function Init( string $type, string $name, array $config ) : bool
 	echo "{$url} \n";
 
 	//	Clone.
-	`git clone {$url} {$path} -b {$branch}`;
+	/* @var $output array */
+	/* @var $status int   */
+	exec("git clone {$url} {$path} -b {$branch} 2>&1", $output, $status);
+	if( $status ){
+		exit(__LINE__);
+	}
 
 	//	Change directory
-	chdir($path);
+	if(!chdir($path) ){
+		exit(__LINE__);
+	}
 
 	//	Set hooks path.
 	$hooks_path = _ROOT_GIT_.'/asset/init/hooks/';
@@ -137,15 +155,36 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Set local hooks to submodules.
 	`git submodule foreach git config core.hooksPath {$hooks_path}`;
 
-	//	main submodule
+	//	Change the github owner name.
+	GitSubmoduleGithub();
+
+	//	Each submodule.
 	GitSubmoduleRepository();
 
-	//	nested submodules
+	//	Nested submodules.
 	if( $paths = `git submodule foreach pwd` ){
 		foreach( explode("\n", $paths) as $path ){
-			if( file_exists($path) ){
-				GitSubmoduleRepository();
+			$path = trim($path);
+			if(!file_exists($path) ){ continue; }
+			if(!chdir($path)){
+				echo "ERROR: {$path}\n";
+				continue;
 			}
+
+			//	Add another remote.
+			GitSubmoduleRepository();
+
+			//	detached --> _OP_APP_BRANCH_
+			if(!trim(`git branch --show-current` ?? '')){
+				foreach( explode("\n", `git branch`) as $branch ){
+					$branch = trim($branch);
+					if( $branch == _OP_APP_BRANCH_ ){
+						exec('git switch '._OP_APP_BRANCH_);
+						continue 2;
+					}
+				}
+				exec('git checkout origin/'._OP_APP_BRANCH_.' -b '._OP_APP_BRANCH_);
+			};
 		}
 	}
 
