@@ -6,7 +6,6 @@
   <img src="https://www.php.net/images/php8/logo_php8_2.svg" alt="php8.2" height="22" width="60"/>
   <img src="https://www.php.net/images/php8/logo_php8_3.svg" alt="php8.3" height="22" width="60"/>
   <img src="https://www.php.net/images/php8/logo_php8_4.svg" alt="php8.4" height="22" width="60"/>
-  <img src="https://www.php.net/images/php8/logo_php8_5.svg" alt="php8.4" height="22" width="60"/>
 </div>
 
  1. Intuitive
