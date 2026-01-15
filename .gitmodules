@@ -1,12 +1,16 @@
 [submodule "asset/core"]
 	path = asset/core
 	url  = https://github.com/onepiece-framework/op-core-8.git
+	branch = 2030
 [submodule "asset/bootstrap"]
 	path = asset/bootstrap
 	url  = https://github.com/onepiece-framework/op-asset-bootstrap2.git
+	branch = 2030
 [submodule "asset/template"]
 	path = asset/template
 	url  = https://github.com/onepiece-framework/op-asset-template.git
+	branch = 2030
 [submodule "asset/init/hooks"]
 	path = asset/init/hooks
 	url  = https://github.com/onepiece-framework/op-asset-hooks.git
+	branch = 2030
