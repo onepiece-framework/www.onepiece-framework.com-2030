@@ -73,7 +73,7 @@ if( file_exists( $file = __DIR__.'/asset/bootstrap/index.php' ) ){
 	include_once($file);
 }else{
 	//	Git submodules have not been initialized.
-	include_once('asset/init/guidance.php');
+	include_once(__DIR__.'/asset/init/guidance.php');
 }
 
 /**	The app is launched automatically.
