@@ -19,5 +19,6 @@ namespace OP;
 
 //	...
 return [
+	'skip'   =>  0,
 	'url'    => 'https://github.com/onepiece-framework/op-module-develop.git',
 ];
