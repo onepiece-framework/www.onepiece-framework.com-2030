@@ -92,11 +92,17 @@ function Init( string $type, string $name, array $config ) : bool
 	$url    = $config['url']    ??  null;
 	$path   = $config['path']   ?? $name;
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
+
 	//	public_html
-	if( $type === 'public_html' ){
-		$dir  = _ROOT_GIT_;
-	}else{
-		$dir  = _ROOT_GIT_."/asset/{$type}";
+	switch( $type ){
+		case 'public_html':
+			$dir  = _ROOT_GIT_;
+			break;
+		case 'asset':
+			$dir  = _ROOT_GIT_."/asset/";
+			break;
+		default:
+			$dir  = _ROOT_GIT_."/asset/{$type}";
 	}
 
 	//	Create directory.
