@@ -1,6 +1,7 @@
 .*
 _*
 public_html/
+asset/core/
 asset/unit/
 asset/module/
 asset/layout/
