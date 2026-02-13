@@ -54,8 +54,14 @@ function Request( string $key, ?string $default=null ) : ?string
 			$tmp = explode('=', $argv, 2);
 
 			//	...
-			$tmp[0] = escapeshellcmd($tmp[0]);
-			$tmp[1] = escapeshellcmd($tmp[1]);
+			if(!preg_match('/^[a-zA-Z0-9_-]+$/', $tmp[0])){
+				continue;
+			}
+
+			//	...
+			if(!preg_match('/^[a-zA-Z0-9_-]+$/', $tmp[1])){
+				continue;
+			}
 
 			//	...
 			$_request[$tmp[0]] = $tmp[1];
