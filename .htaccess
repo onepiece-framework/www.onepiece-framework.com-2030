@@ -39,7 +39,7 @@ ErrorDocument  404 https://onepiece-framework.com/reference/bootstrap/app
 RedirectMatch  404 /\.git
 
 # Deny access dot files.
-RedirectMatch  404 /\..*$
+RedirectMatch 404 /\.(?!well-known/).*
 
 ## onepiece-framework's execute option.
 #
