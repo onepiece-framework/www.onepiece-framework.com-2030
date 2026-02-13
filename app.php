@@ -28,28 +28,6 @@ define('_OP_MEM_USAGE_', memory_get_usage());
  */
 define('_OP_APP_START_', microtime(true));
 
-/**	For remote debug
- *
- * This global variable shows which file is being accessed during remote debugging.
- * For example, this helps clarify when JS or CSS files are accessed.
- * The most common confusion comes from the browser automatically requesting `favicon.ico`.
- *
- * @var string $_request_uri
- */
-if(!$_request_uri = $_SERVER['REQUEST_URI'] ?? null ){ // HTTP or Shell
-	$_request_uri = $_SERVER['PWD'].'/'.basename($_SERVER['PATH_TRANSLATED']);
-}
-
-//	...
-if( $_request_uri === '/favicon.ico' or strpos($_request_uri, '/.well-known/') === 0 ){
-	//	...
-	if( file_exists($path = ".{$_request_uri}") ){
-		echo file_get_contents($path);
-	}
-	//	...
-	return;
-}
-
 /**	Set the application root path.
  *
  */
