@@ -80,5 +80,8 @@ function Request( string $key, ?string $default=null ) : ?string
 	}
 
 	//	...
+	return $_request[$key] ?? $default;
+	/*
 	return (isset($_request[$key]) and strlen($_request[$key])) ? $_request[$key] : $default;
+	*/
 }
