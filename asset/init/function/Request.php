@@ -50,8 +50,8 @@ function Request( string $key, ?string $default=null ) : ?string
 				continue;
 			}
 
-			//	...
-			$tmp = explode('=', $argv);
+			//	2 is key=a=b
+			$tmp = explode('=', $argv, 2);
 
 			//	...
 			$tmp[0] = escapeshellcmd($tmp[0]);
