@@ -60,7 +60,7 @@ foreach( glob(_ROOT_GIT_.'/asset/config/submodule/*/*.php') as $glob ){
 	$temp = explode('/', $glob);
 	$file = array_pop($temp);
 	$type = array_pop($temp);
-	$name = explode('.', $file)[0];
+	$name = basename($file, '.php');
 
 	//	Get each config.
 	$config = (function($glob){
