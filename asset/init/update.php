@@ -126,6 +126,9 @@ function Init( string $type, string $name, array $config ) : bool
 
 	//	Change URL.
 	if( $github = Request('github') ){
+		//	Add original remote.
+		`git remote add onepie {$url}`;
+		//	Replace remote URL: https://github.com/onepiece-framework/op-core.git --> https://github.com/{$github}/op-core.git
 		$url = str_replace('onepiece-framework', $github, $url);
 	}
 
