@@ -152,9 +152,6 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Set hooks path.
 	$hooks_path = _ROOT_GIT_.'/asset/init/hooks/';
 
-	//	Git clone
-	`git submodule update --init --recursive`;
-
 	//	Set local hooks.
 	`git config core.hooksPath {$hooks_path}`;
 
