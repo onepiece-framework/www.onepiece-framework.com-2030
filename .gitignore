@@ -2,6 +2,9 @@
 _*
 public_html/
 asset/core/
+asset/bootstrap/
+asset/init/hooks/
+asset/template/
 asset/unit/
 asset/module/
 asset/layout/
