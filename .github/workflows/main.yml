@@ -15,6 +15,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
     branches:
+      - "onepiece"
       - "php70"
       - "2022"
       - "2023"
@@ -27,6 +28,7 @@ on:
       - "2030"
   pull_request:
     branches:
+      - "onepiece"
       - "php70"
       - "2022"
       - "2023"
