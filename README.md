@@ -69,22 +69,6 @@ Run the following command to update the project.
     </code></pre>
  1. Relaod top page.
 
-## The "NEW WORLD" is a new world!!
-
-## OP UNITES EVERYTHING INTO ONE PIECE
-
-## D
-
-## Notice
-
-## CI/CD
-
-## Layout
-
-## Template
-
-## HTML pass through
-
 # ❤️ Sponsor
 
 If you like the **ONEPIECE Framework**, please consider sponsoring.
