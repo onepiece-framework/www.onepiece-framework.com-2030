@@ -1,4 +1,7 @@
-# <img src="https://user-images.githubusercontent.com/1668339/72398593-cb0d1900-3786-11ea-863c-418ff8d48f43.png" style="height:1.0em;" /><span style="position:relative; top:-0.1em;left:0.2em;">The "ONEPIECE Framework" is insanely great!!</span>
+# <img src="https://user-images.githubusercontent.com/1668339/72398593-cb0d1900-3786-11ea-863c-418ff8d48f43.png" style="height:1.0em; margin-right: 0.1em;" /><span style="position:relative; top:-0.1em;left:0.2em;">The "ONEPIECE Framework" is insanely great!!</span>
+
+![License](https://img.shields.io/badge/license-Apache--2.0-black)
+![PHP](https://img.shields.io/badge/PHP-8.x-black)
 
 <div class="margin bottom 1">
   <img src="https://www.php.net/images/php8/logo_php8.svg"   alt="php8"   height="22" width="60"/>
@@ -8,13 +11,35 @@
   <img src="https://www.php.net/images/php8/logo_php8_4.svg" alt="php8.4" height="22" width="60"/>
 </div>
 
- 1. Intuitive
- 1. Simple
- 1. Easy to understand
+⭐ If you like this project, please give it a star!
+
+## 📚 Philosophy
+
+ONEPIECE Framework explores a new approach to web development.
+
+Instead of forcing developers into a rigid MVC structure,  
+the framework allows HTML files to pass through the framework  
+while still enabling dynamic PHP execution.
+
+This enables a simpler and more intuitive development experience.
+
+### ✨ Features
+
+- Intuitive URL routing
+- HTML pass-through architecture
+- Controller-less routing
+- UNIT modular structure
+- Flexible layout system
+- Built-in CI/CD tools
+
+### 🧭 Policy
+
+- Simple architecture
+- Easy to understand
+- Designed for developer productivity
 
 ## 🛠️ Installation Guide
 
- 1. Fork it to your account:
  1. Download the repository:
     `git clone https://github.com/onepiece-framework/op-skeleton-2030.git 2030`
  1. Change to the project directory:
@@ -25,6 +50,24 @@
     `php -S localhost:2030 app.php`
  1. Open the following URL in your browser:
     `http://localhost:2030`
+
+### 🔄 Future Updates
+
+Run the following command to update the project.
+`php asset/init/update.php`
+
+## ⚡️ Quick Example
+
+ 1. Create `index.html` file.
+ 1. Edit `index.html` file.
+    <pre><code>
+    &lt;h1&gt;Example&lt;/h1&gt;  
+    &lt;p&gt;&lt;?= OP()->Timestamp() ?&gt;&lt;/p&gt;  
+    &lt;?php  
+    D( $_GET );  
+    ?&gt;
+    </code></pre>
+ 1. Relaod top page.
 
 ## The "NEW WORLD" is a new world!!
 
@@ -41,6 +84,18 @@
 ## Template
 
 ## HTML pass through
+
+# ❤️ Sponsor
+
+If you like the **ONEPIECE Framework**, please consider sponsoring.
+
+Your support helps maintain the project and improve documentation.
+
+👉 https://github.com/sponsors/TomoakiNagahara
+
+# 📜 License
+
+Apache License 2.0
 
 # 🙏 Apology
 
