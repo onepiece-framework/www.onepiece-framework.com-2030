@@ -155,6 +155,8 @@ function Init( string $type, string $name, array $config ) : bool
 	}
 	exec("git clone {$depth} {$url} {$path} -b {$branch} 2>&1", $output, $status);
 	if( $status ){
+		echo "Status: {$status}\n";
+		echo join("\n", $output);
 		exit(__LINE__);
 	}
 
