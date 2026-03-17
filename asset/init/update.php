@@ -148,7 +148,12 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Clone.
 	/* @var $output array */
 	/* @var $status int   */
-	exec("git clone {$url} {$path} -b {$branch} 2>&1", $output, $status);
+	if( $depth = Request('depth') ){
+		$depth = "--depth={$depth}";
+	}else{
+		$depth = null;
+	}
+	exec("git clone {$depth} {$url} {$path} -b {$branch} 2>&1", $output, $status);
 	if( $status ){
 		exit(__LINE__);
 	}
