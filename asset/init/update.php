@@ -242,6 +242,19 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 		if( Request('pull', '') ){
 			`git pull {$remote} {$branch}`;
 		}
+
+		//	Submodule
+		if( file_exists('.gitmodules') ){
+			$save_dir = getcwd();
+			foreach( GitSubmoduleConfig('.gitmodules', getcwd()) as $config ){
+				chdir($config['path']);
+				if( Execute("git fetch {$target}") ){
+					Execute("git pull {$remote} {$branch}");
+				}
+				chdir($save_dir);
+			}
+			chdir($save_dir);
+		}
 	}
 
 	//	...
