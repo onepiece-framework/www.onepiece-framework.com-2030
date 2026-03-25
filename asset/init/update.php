@@ -108,17 +108,8 @@ function Init( string $type, string $name, array $config ) : bool
 	$path   = $config['path']   ?? $name;
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
 
-	//	public_html
-	switch( $type ){
-		case 'public_html':
-			$dir  = _ROOT_GIT_;
-			break;
-		case 'asset':
-			$dir  = _ROOT_GIT_."/asset/";
-			break;
-		default:
-			$dir  = _ROOT_GIT_."/asset/{$type}";
-	}
+	//	Get dir of path.
+	$dir = Dir($type);
 
 	//	Create directory.
 	if(!file_exists($dir) ){
@@ -224,7 +215,7 @@ function Init( string $type, string $name, array $config ) : bool
 function Update( string $type, string $name, array $config, bool $init ) : bool
 {
 	//	Init
-	$dir    = _ROOT_GIT_."/asset/{$type}";
+	$dir    = Dir($type);
 	$path   = $config['path']   ?? $name;
 	$remote = $config['remote'] ?? 'origin';
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
@@ -255,4 +246,28 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 
 	//	...
 	return true;
+}
+
+/**	Generate directory of path.
+ *
+ * @created    2026-03-25
+ * @param      string     $type
+ * @return     string     $dir
+ */
+function Dir( string $type ) : string
+{
+	//	...
+	switch( $type ){
+		case 'public_html':
+			$dir  = _ROOT_GIT_;
+			break;
+		case 'asset':
+			$dir  = _ROOT_GIT_."/asset/";
+			break;
+		default:
+			$dir  = _ROOT_GIT_."/asset/{$type}";
+	}
+
+	//	...
+	return $dir;
 }
