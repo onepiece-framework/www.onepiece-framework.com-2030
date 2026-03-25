@@ -47,6 +47,7 @@ if(!defined('_OP_APP_BRANCH_') ){
 //	Include.
 require_once(__DIR__.'/function/Display.php');
 require_once(__DIR__.'/function/Request.php');
+require_once(__DIR__.'/function/Execute.php');
 require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleRepository.php');
 
