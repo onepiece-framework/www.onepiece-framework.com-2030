@@ -52,6 +52,9 @@ require_once(__DIR__.'/function/GitSubmoduleConfig.php');
 require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleRepository.php');
 
+//	Init
+$indicator = Request('indicator','1');
+
 //	Get config list.
 foreach( glob(_ROOT_GIT_.'/asset/config/submodule/*/*.php') as $glob ){
 	//	Change directory.
@@ -78,6 +81,16 @@ foreach( glob(_ROOT_GIT_.'/asset/config/submodule/*/*.php') as $glob ){
 
 	//	Update
 	Update( $type, $name, $config, $init );
+
+	//	Indicator
+	if( $indicator ){
+		echo ".";
+	}
+}
+
+//	Indicator
+if( $indicator ){
+	echo PHP_EOL;
 }
 
 /**	Init
