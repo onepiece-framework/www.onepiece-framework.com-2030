@@ -1,6 +1,7 @@
 .*
 _*
 public_html/
+asset/db/
 asset/core/
 asset/bootstrap/
 asset/init/hooks/
