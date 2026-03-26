@@ -48,6 +48,7 @@ if(!defined('_OP_APP_BRANCH_') ){
 require_once(__DIR__.'/function/Display.php');
 require_once(__DIR__.'/function/Request.php');
 require_once(__DIR__.'/function/Execute.php');
+require_once(__DIR__.'/function/GitHooks.php');
 require_once(__DIR__.'/function/GitSubmoduleConfig.php');
 require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleRepository.php');
@@ -167,6 +168,7 @@ function Init( string $type, string $name, array $config ) : bool
 		exit(__LINE__);
 	}
 
+	/*
 	//	Set hooks path.
 	$hooks_path = _ROOT_GIT_.'/asset/init/hooks/';
 
@@ -175,6 +177,8 @@ function Init( string $type, string $name, array $config ) : bool
 
 	//	Set local hooks to submodules.
 	`git submodule foreach git config core.hooksPath {$hooks_path}`;
+	*/
+	GitHooks();
 
 	//	Change the github owner name.
 	GitSubmoduleGithub();
