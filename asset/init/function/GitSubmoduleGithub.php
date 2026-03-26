@@ -1,10 +1,9 @@
 <?php
-/**	op-skeleton-model:/asset/init/function/GitSubmoduleGithub.php
+/**	op-skeleton-2030:/asset/init/function/GitSubmoduleGithub.php
  *
  * @created    2026-01-10
  * @license    Apache-2.0
- * @package    op-skeleton
- * @subpackage model
+ * @package    op-skeleton-2030
  * @copyright  Tomoaki Nagahara
  */
 

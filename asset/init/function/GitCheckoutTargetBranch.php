@@ -1,10 +1,9 @@
 <?php
-/**	op-skeleton-model:/asset/init/function/GitCheckoutTargetBranch.php
+/**	op-skeleton-2030:/asset/init/function/GitCheckoutTargetBranch.php
  *
  * @created    2025-10-28
  * @license    Apache-2.0
- * @package    op-skeleton
- * @subpackage model
+ * @package    op-skeleton-2030
  * @copyright  Tomoaki Nagahara
  */
 

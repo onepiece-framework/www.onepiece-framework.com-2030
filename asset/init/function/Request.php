@@ -1,10 +1,9 @@
 <?php
-/**	op-skeleton-model:/asset/init/function/Request.php
+/**	op-skeleton-2030:/asset/init/function/Request.php
  *
  * @created    2025-10-30
  * @license    Apache-2.0
- * @package    op-skeleton
- * @subpackage model
+ * @package    op-skeleton-2030
  * @copyright  Tomoaki Nagahara
  */
 
