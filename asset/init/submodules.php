@@ -25,6 +25,7 @@ declare(strict_types=1);
 namespace OP\SKELETON\INIT;
 
 //	Include
+require_once(__DIR__.'/function/GitHooks.php');
 require_once(__DIR__.'/function/GitSubmoduleGithub.php');
 require_once(__DIR__.'/function/GitSubmoduleForeach.php');
 require_once(__DIR__.'/function/GitSubmoduleRepository.php');
@@ -39,6 +40,9 @@ chdir(_ROOT_GIT_);
 (function($git_root){
 	include("{$git_root}/asset/config/op.php");
 })(_ROOT_GIT_);
+
+//	Set the Git hooks
+GitHooks();
 
 //	Change the github owner name.
 GitSubmoduleGithub();
