@@ -1,10 +1,9 @@
 
- ## op-skeleton-model:/asset/init/github.sh
+ ## op-skeleton-2030:/asset/init/github.sh
  #
  # @created    ????
  # @license    Apache-2.0
- # @package    op-skeleton
- # @subpackage model
+ # @package    op-skeleton-2030
  # @copyright  (C) 2020 Tomoaki Nagahara
  #
 

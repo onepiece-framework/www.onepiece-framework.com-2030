@@ -1,5 +1,5 @@
 <?php
-/**	op-skeleton-model:/asset/init/update.php
+/**	op-skeleton-2030:/asset/init/update.php
  *
  * Init and update a non-Git managed submodules.
  *
@@ -13,8 +13,7 @@
  *
  * @created    2026-01-04
  * @license    Apache-2.0
- * @package    op-skeleton
- * @subpackage model
+ * @package    op-skeleton-2030
  * @copyright  Tomoaki Nagahara
  */
 

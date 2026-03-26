@@ -1,5 +1,5 @@
 <?php
-/**	op-skeleton-model:/asset/init/submodules.php
+/**	op-skeleton-2030:/asset/init/submodules.php
  *
  * Init Git managed submodule
  *
@@ -9,8 +9,7 @@
  *
  * @created    2024-04-16
  * @license    Apache-2.0
- * @package    op-skeleton
- * @subpackage model
+ * @package    op-skeleton-2030
  * @copyright  Tomoaki Nagahara
  */
 
