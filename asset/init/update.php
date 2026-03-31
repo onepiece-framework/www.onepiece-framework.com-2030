@@ -137,6 +137,8 @@ function Init( string $type, string $name, array $config ) : bool
 		//	Add original remote.
 		`git remote add onepie {$url}`;
 		*/
+		$onepie = $url;
+
 		//	Replace remote URL: https://github.com/onepiece-framework/op-core.git --> https://github.com/{$github}/op-core.git
 		$url = str_replace('onepiece-framework', $github, $url);
 	}
@@ -166,6 +168,11 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Change directory
 	if(!chdir($path) ){
 		exit(__LINE__);
+	}
+
+	//	Add original remote.
+	if( $onepie ?? null ){
+		exec("git remote add onepie {$onepie}");
 	}
 
 	/*
