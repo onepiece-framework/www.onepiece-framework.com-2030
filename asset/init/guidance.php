@@ -3,10 +3,9 @@
  *
  * @genesis    2024-11-24  op-skeleton-2020
  * @copied     2025-06-08  op-skeleton-2030
- * @version    1.0
+ * @license    Apache-2.0
  * @package    op-skeleton-2030
- * @author     Tomoaki Nagahara
- * @copyright  Tomoaki Nagahara All right reserved.
+ * @copyright  Tomoaki Nagahara
  */
 
 //	Generate git root.
