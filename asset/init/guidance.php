@@ -11,6 +11,9 @@
 //	Generate git root.
 $git_root = realpath(__DIR__.'/../../').'/';
 
+//	If public_html has not been downloaded yet, the "git:/" becomes the "app:/".
+$git_root = $_SERVER['APP_ROOT'].'/';
+
 //	Generate the usage.
 $usage    = PHP_EOL;
 $usage   .= 'Usage: ' . PHP_EOL;
