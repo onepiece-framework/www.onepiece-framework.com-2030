@@ -159,7 +159,8 @@ function Init( string $type, string $name, array $config ) : bool
 	/* @var $output array */
 	/* @var $status int   */
 	if( $depth = Request('depth') ){
-		$depth = "--depth={$depth}";
+		//	This feature for only CI.
+		$depth = "--depth='1'";
 	}else{
 		$depth = null;
 	}
