@@ -131,6 +131,11 @@ function Init( string $type, string $name, array $config ) : bool
 		return false;
 	}
 
+	//	Escape
+	$url    = escapeshellarg($url);
+	$path   = escapeshellarg($path);
+	$branch = escapeshellarg($branch);
+
 	//	Change URL.
 	if( $github = Request('github') ){
 		/**	Impossible to save the original remote.
@@ -166,7 +171,7 @@ function Init( string $type, string $name, array $config ) : bool
 	}
 
 	//	Change directory
-	if(!chdir($path) ){
+	if(!chdir( $config['path'] ?? $name ) ){
 		exit(__LINE__);
 	}
 
