@@ -164,10 +164,14 @@ function Init( string $type, string $name, array $config ) : bool
 	}else{
 		$depth = null;
 	}
-	exec("git clone {$depth} {$url} {$path} -b {$branch} 2>&1", $output, $status);
+
+	//	Execute git clone.
+	$comand = "git clone {$depth} {$url} {$path} -b {$branch}";
+	exec("{$comand} 2>&1", $output, $status);
 	if( $status ){
-		echo "Status: {$status}\n";
-		echo join("\n", $output);
+		echo "Command: {$comand}\n";
+		echo "Error code: {$status}\n";
+		echo join("\n", $output).PHP_EOL;
 		exit(__LINE__);
 	}
 
