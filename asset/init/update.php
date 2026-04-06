@@ -110,6 +110,10 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 	$remote = $config['remote'] ?? 'origin';
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
 
+	//	Escape
+	$remote = escapeshellarg($remote);
+	$branch = escapeshellarg($branch);
+
 	//	Check direcory exists.
 	if(!file_exists("{$dir}/{$path}") ){
 		return true;
