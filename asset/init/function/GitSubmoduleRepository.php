@@ -28,14 +28,31 @@ namespace OP\SKELETON\INIT;
  *
  */
 require_once(__DIR__.'/Request.php');
+require_once(__DIR__.'/Execute.php');
+require_once(__DIR__.'/GitInitLocal.php');
 
 /**	Add option repository.
  *
  */
 function GitSubmoduleRepository()
 {
+	//	local repository directory
+	static $dir = null;
+	if( $dir === null ){
+		$dir = Request('dir','~/repo');
+		if( $dir[0] === '~' ){
+			if( $home = $_SERVER['HOME'] ?? getenv('HOME') ?? null ){
+				$dir  = $home.substr($dir, 1);
+			}else{
+				echo "\n The home directory variable was not found. \n\n";
+				exit(__LINE__);
+			}
+		}
+		$dir = rtrim($dir, '/');
+	}
+
 	//	Check the URL.
-	if(!$url = `git remote get-url origin` ){
+	if(!$url = exec('git remote get-url origin') ){
 		return;
 	}
 
@@ -47,8 +64,6 @@ function GitSubmoduleRepository()
 	}
 
 	//	Init
-	$dir  = Request('dir') ?? '~/repo';
-	$dir  = rtrim($dir, '/');
 	$url  = trim($url);
 	$temp = explode('/', $url);
 	$name = array_pop($temp);
@@ -57,16 +72,27 @@ function GitSubmoduleRepository()
 
 	//	local
 	if( Request('local') ){
-		$url = "{$dir}/{$path}";
-		`git remote add local {$url}`;
-		`git fetch local`;
+		//	Generate local path.
+		$local = "{$dir}/{$path}";
+
+		//	Check if the local repository exists.
+		if( GitInitLocal($local) ){
+			//	Add remote and fetch.
+			$local = escapeshellarg($local);
+			if( Execute("git remote add local {$local}") ){
+				Execute("git fetch local");
+			}
+		}
 	}
 
 	//	ssh
 	if( Request('ssh') ){
 		$host = Request('host') ?? 'repo';
-		$url = "{$host}:{$dir}/{$path}";
-		`git remote add {$host} {$url}`;
-		`git fetch {$host}`;
+		$url  = "{$host}:{$dir}/{$path}";
+		$host = escapeshellarg($host);
+		$url  = escapeshellarg($url );
+		if( Execute("git remote add {$host} {$url}") ){
+			Execute("git fetch {$host}");
+		}
 	}
 }
