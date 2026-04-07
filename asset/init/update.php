@@ -94,67 +94,6 @@ if( $indicator ){
 	echo PHP_EOL;
 }
 
-/**	Update
- *
- * @created    2026-01-04
- * @param      string     $type
- * @param      string     $name
- * @param      array      $config
- * @return     bool
- */
-function Update( string $type, string $name, array $config, bool $init ) : bool
-{
-	//	Init
-	$dir    = Dir($type);
-	$path   = $config['path']   ?? $name;
-	$remote = $config['remote'] ?? 'origin';
-	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
-
-	//	Escape
-	$remote = escapeshellarg($remote);
-	$branch = escapeshellarg($branch);
-
-	//	Check direcory exists.
-	if(!file_exists("{$dir}/{$path}") ){
-		return true;
-	}
-
-	//	Change directory.
-	chdir("{$dir}/{$path}");
-
-	//	Check flag
-	if( $init ){
-
-	}else{
-		//	Args
-		$target = Request('remote', '--all');
-
-		//	Fetch
-		`git fetch {$target}`;
-
-		//	Pull
-		if( Request('pull', '') ){
-			`git pull {$remote} {$branch}`;
-		}
-
-		//	Submodule
-		if( file_exists('.gitmodules') ){
-			$save_dir = getcwd();
-			foreach( GitSubmoduleConfig('.gitmodules', getcwd()) as $config ){
-				chdir($config['path']);
-				if( Execute("git fetch {$target}") ){
-					Execute("git pull {$remote} {$branch}");
-				}
-				chdir($save_dir);
-			}
-			chdir($save_dir);
-		}
-	}
-
-	//	...
-	return true;
-}
-
 /**	Generate directory of path.
  *
  * @created    2026-03-25
