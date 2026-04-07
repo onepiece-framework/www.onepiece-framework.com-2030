@@ -58,8 +58,8 @@ function Request( string $key, ?string $default=null ) : ?string
 				continue;
 			}
 
-			//	...
-			if(!preg_match('/^[a-zA-Z0-9_-]+$/', $tmp[1])){
+			//	Allow path-like CLI values such as /var/git, ~/repo
+			if(!preg_match('/^[-_a-zA-Z0-9\.\/~]+$/', $tmp[1])){
 				continue;
 			}
 
