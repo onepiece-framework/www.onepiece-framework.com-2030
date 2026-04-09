@@ -31,7 +31,7 @@ function GitInitLocal( string $path ) : bool
 {
 	//	...
 	if(!file_exists($path) ){
-		if(!mkdir($path, recursive:true) ){
+		if(!mkdir($path, 0755, true) ){
 			Display("mkdir failed: {$path}");
 			return false;
 		}
