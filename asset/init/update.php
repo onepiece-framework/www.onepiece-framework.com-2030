@@ -45,6 +45,8 @@ if(!defined('_OP_APP_BRANCH_') ){
 }
 
 //	Include.
+require_once(__DIR__.'/function/Init.php');
+require_once(__DIR__.'/function/Update.php');
 require_once(__DIR__.'/function/Display.php');
 require_once(__DIR__.'/function/Request.php');
 require_once(__DIR__.'/function/Execute.php');
