@@ -10,7 +10,7 @@
 /**	Declare strict type
  *
  */
-declare(strict_types=1);
+declare(strict_types=0);
 
 /**	Namespace
  *
@@ -32,6 +32,8 @@ function Init( string $type, string $name, array $config ) : bool
 	$url    = $config['url']    ??  null;
 	$path   = $config['path']   ?? $name;
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
+//	"_OP_APP_BRANCH_" is an int, which can cause a type error in escapeshellarg().
+//	$branch = (string)$branch;
 
 	//	Get dir of path.
 	$dir = Dir($type);
