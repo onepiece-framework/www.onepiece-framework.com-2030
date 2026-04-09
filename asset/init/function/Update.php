@@ -10,7 +10,7 @@
 /**	Declare strict type
  *
  */
-declare(strict_types=1);
+declare(strict_types=0);
 
 /**	Namespace
  *
@@ -33,6 +33,8 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 	$path   = $config['path']   ?? $name;
 	$remote = $config['remote'] ?? 'origin';
 	$branch = $config['branch'] ?? _OP_APP_BRANCH_;
+//	"_OP_APP_BRANCH_" is an int, which can cause a type error in escapeshellarg().
+//	$branch = (string)$branch;
 
 	//	Escape
 	$remote = escapeshellarg($remote);
