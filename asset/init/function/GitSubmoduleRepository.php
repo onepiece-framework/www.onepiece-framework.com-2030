@@ -87,7 +87,8 @@ function GitSubmoduleRepository()
 
 	//	ssh
 	if( Request('ssh') ){
-		$host = Request('host') ?? 'repo';
+		$host = Request('host',   'repo');
+		$dir  = Request('dir' , '~/repo');
 		$url  = "{$host}:{$dir}/{$path}";
 		$host = escapeshellarg($host);
 		$url  = escapeshellarg($url );
