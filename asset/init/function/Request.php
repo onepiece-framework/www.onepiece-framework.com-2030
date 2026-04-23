@@ -43,6 +43,11 @@ function Request( string $key, ?string $default=null ) : ?string
 
 	//	...
 	if( $_request === null ){
+		//	Default value.
+		if( file_exists( $path = __DIR__.'/../../config/init.php' ) ){
+			$_request = include($path);
+		}
+
 		//	...
 		foreach( ($_SERVER['argv'] ?? []) as $argv ){
 			//	...
