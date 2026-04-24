@@ -63,7 +63,7 @@ function Init( string $type, string $name, array $config ) : bool
 	$branch = escapeshellarg($branch);
 
 	//	Change URL.
-	if( $github = Request('github') ){
+	if( $github = Request('github') and preg_match('|[:/]onepiece-framework/|', $url) ){
 		//	Add original remote after git clone.
 		$onepie = $url;
 
