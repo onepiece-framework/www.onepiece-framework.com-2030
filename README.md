@@ -3,27 +3,21 @@
 ![License](https://img.shields.io/badge/license-Apache--2.0-black)
 ![PHP](https://img.shields.io/badge/PHP-8.x-black)
 
-<div class="margin bottom 1">
-  <img src="https://www.php.net/images/php8/logo_php8.svg"   alt="php8"   height="22" width="60"/>
-  <img src="https://www.php.net/images/php8/logo_php8_1.svg" alt="php8.1" height="22" width="60"/>
-  <img src="https://www.php.net/images/php8/logo_php8_2.svg" alt="php8.2" height="22" width="60"/>
-  <img src="https://www.php.net/images/php8/logo_php8_3.svg" alt="php8.3" height="22" width="60"/>
-  <img src="https://www.php.net/images/php8/logo_php8_4.svg" alt="php8.4" height="22" width="60"/>
-</div>
+<p>
+<img src="https://www.php.net/images/php8/logo_php8.svg"   alt="php8"   height="22"/>　
+<img src="https://www.php.net/images/php8/logo_php8_1.svg" alt="php8.1" height="22"/>　
+<img src="https://www.php.net/images/php8/logo_php8_2.svg" alt="php8.2" height="22"/>　
+<img src="https://www.php.net/images/php8/logo_php8_3.svg" alt="php8.3" height="22"/>　
+<img src="https://www.php.net/images/php8/logo_php8_4.svg" alt="php8.4" height="22"/>　
+</p>
 
 ⭐ If you like this project, please give it a star!
 
-## 📚 Philosophy
+## 📚 What Is ONEPIECE Framework?
 
-ONEPIECE Framework explores a new approach to web development.
+The ONEPIECE Framework is a PHP framework focused on simple and Intuitive.
 
-Instead of forcing developers into a rigid MVC structure,  
-the framework allows HTML files to pass through the framework  
-while still enabling dynamic PHP execution.
-
-This enables a simpler and more intuitive development experience.
-
-### ✨ Features
+### ✨ ONEPIECE Framework explores a new approach
 
 - Intuitive URL routing
 - HTML pass-through architecture
@@ -32,42 +26,81 @@ This enables a simpler and more intuitive development experience.
 - Flexible layout system
 - Built-in CI/CD tools
 
-### 🧭 Policy
+### 🧐 Policy and Philosophy
 
 - Simple architecture
 - Easy to understand
 - Designed for developer productivity
 
-## 🛠️ Installation Guide
+### Why This Skeleton Exists
 
- 1. Download the repository:
-    `git clone https://github.com/onepiece-framework/op-skeleton-2030.git 2030`
- 1. Change to the project directory:
-    `cd 2030`
+This repository is the application skeleton for building a site with the ONEPIECE Framework.
+Please copy this repository to your own repository and use it.
+
+## 🚀 Quick Start
+
+ 1. Clone the repository:
+	```
+	git clone https://github.com/onepiece-framework/op-skeleton-2030.git 2030
+	```
+ 1. Move into the project directory:
+	```
+	cd 2030
+	```
  1. Initialize git submodules:
-    `php asset/init/submodules.php`
+	```
+	php asset/init/submodules.php
+	```
  1. Start the PHP built-in web server:
-    `php -S localhost:2030 app.php`
+	```
+	php -S localhost:2030 app.php
+	```
  1. Open the following URL in your browser:
-    `http://localhost:2030`
+	```
+	http://localhost:2030
+	```
 
 ### 🔄 Future Updates
 
-Run the following command to update the project.
-`php asset/init/update.php`
+You can update the ONE PIECE Framework to the latest version using the following command.
+
+```
+php asset/init/update.php
+```
 
 ## ⚡️ Quick Example
 
- 1. Create `index.html` file.
- 1. Edit `index.html` file.
-    <pre><code>
-    &lt;h1&gt;Example&lt;/h1&gt;  
-    &lt;p&gt;&lt;?= OP()->Timestamp() ?&gt;&lt;/p&gt;  
-    &lt;?php  
-    D( $_GET );  
-    ?&gt;
-    </code></pre>
- 1. Relaod top page.
+### CI/CD example
+
+The ONEPIECE Framework has built-in CI/CD.
+
+```
+./cicd
+```
+
+⚠️ CAUTION ⚠️ Please change the "origin" to your own repository.
+
+### HTML Pass-through example
+
+ 1. Create `example.html` and write:
+	```
+	<h1>Example</h1>
+	<p><?= OP()->Timestamp() ?></p>
+	<?php
+	D( $_GET );
+	?>
+	```
+ 1. Open the following URL in your browser:
+	```
+	http://localhost:2030/example.html
+	```
+
+## 🗺️ Documentation Map
+
+ - README.md
+   Project overview, installation, and first steps.
+ - CODEX.md
+   Working rules for contributors and Codex operating on this repository.
 
 # ❤️ Sponsor
 
