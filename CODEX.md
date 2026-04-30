@@ -58,13 +58,13 @@ Important constraints:
 Use these directories according to their intended roles:
 
 - `asset/bootstrap/`
-  Application bootstrap and startup include chain.
+  Application bootstrap and startup include chain. This area is expected to stay self-contained before OP-CORE is fully available, and its templates are not intended as reusable application templates for other layers.
 - `asset/config/`
   Application and environment configuration.
 - `asset/layout/`
   Shared layout structure and common page framing.
 - `asset/template/`
-  Page templates and view-level output.
+  Page templates and view-level output. Mainly framework-default templates, not automatically the best place for every user-owned application template.
 - `asset/unit/`
   UNIT-based application features and behavior.
 - `asset/module/`
@@ -77,6 +77,7 @@ When deciding where to edit:
 - Page output changes should start in `asset/template/` or `asset/layout/`.
 - Behavior controlled by configuration should start in `asset/config/`.
 - Startup changes should stay isolated to bootstrap-related files.
+- Treat `asset/bootstrap/` as a pre-core execution area: do not assume OP-CORE features are available there unless the bootstrap itself has already made them available.
 
 ## Editing Policy
 
@@ -87,13 +88,52 @@ Follow these rules when making changes:
 - Avoid unrelated refactors while handling a focused task.
 - Treat `app.php`, `.htaccess`, and bootstrap files as high-impact files.
 - Keep changes local to the smallest responsible layer.
+- When documenting a specification, do not stop at behavior alone. If the intent, purpose, expected exceptions, or the reason an exception exists are not already clear from the code or existing docs, ask the user and record the answer.
 
 Practical defaults:
 
 - UI or page changes: start with `asset/template/` and `asset/layout/`.
+- The normal framework operating pattern is to create a new site-specific layout under `asset/layout/`.
+- Shared templates such as headers, footers, and menus should usually be placed in `asset/layout/<layout-name>/template/`, not in `asset/template/`.
+- Current template search order checks `asset/layout/<layout-name>/template/` before `asset/template/`, so layout-specific shared templates can override skeleton-level defaults cleanly.
+- Be careful with `asset/template/`: it mainly holds framework-default templates, so putting developer-specific or end-user-specific templates there can make commit ownership and version-control handling awkward unless that tradeoff is intentional.
 - Config changes: start with `asset/config/`.
 - Routing changes: inspect `index.php`, rewrite assumptions, and router behavior together.
 - Bootstrap changes: edit only when startup requirements actually need to change.
+
+Documentation tagging defaults:
+
+- When a document describes a current problem, mismatch, risk, limitation, or future fix direction, add a searchable tag.
+- Use these tags consistently: `[DOC-ISSUE]`, `[DOC-RISK]`, `[DOC-GAP]`, `[DOC-FUTURE]`, `[DOC-PRIORITY1]`.
+- Use `[DOC-PRIORITY1]` when the specification is already clear but the current implementation is clearly different. Treat these as the highest-priority gaps to be fixed and later re-checked.
+- Prefer putting the tag at the start of the relevant heading or paragraph so it can be collected later with text search.
+- Do not use `asset/docs/ja/`, any `docs/ja/` directory under `asset/core`, `asset/unit`, or `asset/module`, or `asset/docs/spec/` as the default location for new Japanese translations.
+- Japanese translations should live next to the English file and use the suffix `.ja.md`.
+- Use `asset/docs/httpd/` for web-server-related documents.
+- Use `asset/docs/cicd/` for framework-level CI/CD philosophy, history, background, and operating-model documents.
+- Use `asset/docs/unit/` for philosophy, history, and background of the Unit system itself.
+- Use `asset/docs/module/` for philosophy, history, and background of the Module system itself.
+- Use `asset/docs/new-world/` for NEW WORLD philosophy, background, and historical documents.
+- Use `asset/docs/core/` for op-core philosophy, background, and high-level core feature documents.
+- Use `asset/docs/op/` for framework-wide philosophy, design intent, and background of the ONEPIECE Framework.
+- Use `asset/docs/skeleton/` for skeleton-specific framework documents.
+- If a framework-level document does not fit any of the categories above, store it directly under `asset/docs/`.
+- Do not put local absolute file links such as `/System/Volumes/...` into repository documents.
+- Reason: those paths are specific to the current machine and environment, so they are not stable or portable across other developers' environments.
+- In repository documents, prefer plain repository-relative paths written as text instead of clickable local-environment file links.
+- Use each unit's own `docs/` directory for As-Is behavior, current implementation details, technical documents, unit-internal flows, encapsulated black-box behavior, and unit-specific implementation problems.
+- Use each module's own `docs/` directory in the same way for module-specific As-Is behavior, implementation details, and internal technical documents.
+- If a behavior can be used without Core-side or user-side knowledge of the internal implementation, prefer documenting that technical detail inside the responsible unit's `docs/`.
+- For CI/CD, keep framework-level philosophy in `asset/docs/cicd/`, but keep concrete current specs and local implementation details in the responsible unit or module `docs/`.
+- For NEW WORLD, keep framework-level philosophy in `asset/docs/new-world/`, but keep unit-specific history, background, and current behavior in each responsible unit `docs/`.
+- These documents are primarily for AI agents, not for general human-facing product documentation.
+- The main purpose of the documents is to give AI a reliable basis for judging what is correct when modifying, refactoring, or adding code.
+- English documents remain the canonical working documents for AI consumption.
+- Japanese translations are also required because the user reviews document correctness in Japanese and uses the translation to validate whether the English document is accurate.
+- Because many documents are written or expanded by AI, assume that mistakes, gaps, or wording mismatches may still exist until reviewed.
+- The long-term goal is that humans will not need to learn the entire ONEPIECE Framework exhaustively before using it effectively.
+- Instead, a human should be able to ask AI how to use the framework or describe what they want to do, and the AI should be able to give an appropriate answer based on these documents.
+- Because of that goal, documents should help AI judge not only how the code currently works, but also what kinds of answers, changes, and implementation decisions are correct within the framework.
 
 ## Safe Change Patterns
 
@@ -119,6 +159,11 @@ Practical defaults:
 ### Changing Configuration
 
 - Use `asset/config/` as the first place to change behavior.
+- Prefer the built-in local override pattern when a change is environment-specific:
+  use `asset/config/name.php` for shared defaults and `asset/config/_name.php` for local-only overrides.
+- Remember that `Config::Get()` loads `name.php` and then `_name.php`, so underscore-prefixed config files can override shared values without editing the shared config directly.
+- Use underscore-prefixed config files for machine-local settings such as local admin IPs, local database credentials, or local PHP runtime overrides.
+- This pattern also aligns with `.gitignore` rules for `.*` and `_*`, which helps prevent accidental inclusion of local-only config files in a normal `git add .` flow.
 - Do not hardcode environment-specific values in templates.
 - Keep configuration concerns separate from rendering concerns.
 
