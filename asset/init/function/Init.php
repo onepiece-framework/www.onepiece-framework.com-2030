@@ -57,10 +57,12 @@ function Init( string $type, string $name, array $config ) : bool
 		return false;
 	}
 
+	/*
 	//	Escape
 	$url    = escapeshellarg($url);
 	$path   = escapeshellarg($path);
 	$branch = escapeshellarg($branch);
+	*/
 
 	//	Change URL.
 	if( $github = Request('github') and preg_match('|[:/]onepiece-framework/|', $url) ){
@@ -77,6 +79,11 @@ function Init( string $type, string $name, array $config ) : bool
 	// Display label.
 	echo "{$dir}/{$path} --> {$branch} \n";
 	echo "{$url} \n";
+
+	//	Escape
+	$url    = escapeshellarg($url);
+	$path   = escapeshellarg($path);
+	$branch = escapeshellarg($branch);
 
 	//	Clone.
 	/* @var $output array */
