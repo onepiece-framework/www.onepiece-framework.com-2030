@@ -42,9 +42,16 @@ function Request( string $key, ?string $default=null ) : ?string
 
 	//	...
 	if( $_request === null ){
+		$_request = [];
+
 		//	Default value.
 		if( file_exists( $path = __DIR__.'/../../config/init.php' ) ){
 			$_request = include($path);
+		}
+
+		//	Local override.
+		if( file_exists( $path = __DIR__.'/../../config/_init.php' ) ){
+			$_request = array_replace_recursive($_request, include($path));
 		}
 
 		//	...
