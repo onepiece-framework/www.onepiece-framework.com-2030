@@ -32,7 +32,7 @@ The ONEPIECE Framework is a PHP framework focused on simple and Intuitive.
 - Easy to understand
 - Designed for developer productivity
 
-### Why This Skeleton Exists
+### 🦴Why This Skeleton Exists
 
 This repository is the application skeleton for building a site with the ONEPIECE Framework.
 Please copy this repository to your own repository and use it.
