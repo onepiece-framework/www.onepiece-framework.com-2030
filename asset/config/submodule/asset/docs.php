@@ -19,7 +19,7 @@ namespace OP;
 
 //	...
 return [
-	'skip'   =>  1,
+	'skip'   =>  0,
 	'path'   => 'docs',
 	'url'    => 'https://github.com/onepiece-framework/op-asset-docs.git',
 ];
