@@ -6,6 +6,7 @@ This file is the working guide for Codex and contributors editing this repositor
 
 - `README.md` explains what the project is and how to start it.
 - `CODEX.md` explains how to change it safely.
+- `CUSTOMIZATION_MAP.md` maps safe application customization points against framework-managed core zones.
 - Prefer repository-specific working rules over general framework descriptions.
 
 ## Project Snapshot
@@ -136,6 +137,11 @@ Documentation tagging defaults:
 - Because of that goal, documents should help AI judge not only how the code currently works, but also what kinds of answers, changes, and implementation decisions are correct within the framework.
 
 ## Safe Change Patterns
+
+For the boundary between application-owned customization and framework-managed packages, read
+`CUSTOMIZATION_MAP.md` before editing submodule-backed areas such as `asset/core/`,
+`asset/bootstrap/`, `asset/unit/`, `asset/module/`, `asset/layout/`,
+`asset/template/`, or `asset/webpack/`.
 
 ### Adding a Page
 
