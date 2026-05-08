@@ -99,8 +99,11 @@ The ONEPIECE Framework has built-in CI/CD.
 
  - README.md
    Project overview, installation, and first steps.
- - CODEX.md
+ - [Agent Guide](./asset/docs/AGENTS.md)
+ - [Codex Guide](./asset/docs/CODEX.md)
    Working rules for contributors and Codex operating on this repository.
+ - [Customization Map](./asset/docs/CUSTOMIZATION_MAP.md)
+   Safe customization points versus framework-managed core zones.
 
 # ❤️ Sponsor
 
