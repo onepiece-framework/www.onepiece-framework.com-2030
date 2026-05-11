@@ -73,6 +73,11 @@ function Init( string $type, string $name, array $config ) : bool
 		$url = str_replace('onepiece-framework', $github, $url);
 	}
 
+	//	Change clone URL scheme: https://github.com/owner/repo.git --> git@github.com:owner/repo.git
+	if( Request('scheme') === 'ssh' ){
+		$url = preg_replace('|^https://github\.com/([^/]+/[^/]+\.git)$|', 'git@github.com:$1', $url);
+	}
+
 	//	Change directory.
 	chdir($dir);
 
