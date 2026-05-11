@@ -29,14 +29,34 @@ require_once(__DIR__.'/Execute.php');
  */
 function GitInitLocal( string $path ) : bool
 {
-	//	...
+	//	Check if exists directory.
 	if(!file_exists($path) ){
+		//  Create directory
 		if(!mkdir($path, 0755, true) ){
 			Display("mkdir failed: {$path}");
 			return false;
 		}
+		//  Init bare repository and add remote.
+		$path = escapeshellarg($path);
+		if( $io = Execute("git init --bare {$path}") ){
+			$io = Execute("git remote add local {$path}");
+		}
+	}else{
+		//	Check if git bare repository.
+		if(!file_exists($path.'/HEAD') ){
+			return false;
+		}
+		//  Add local remote and fetch.
+		$path = escapeshellarg($path);
+		if( $io = Execute("git remote add local {$path}") ){
+			$io = Execute("git fetch local");
+		}
 	}
 
+	//  ...
+	return $io;
+
+	/*
 	//	...
 	if(!is_dir($path) ){
 		Display("This path is not a directory: {$path}");
@@ -68,4 +88,5 @@ function GitInitLocal( string $path ) : bool
 
 	//	...
 	return $io;
+	*/
 }
