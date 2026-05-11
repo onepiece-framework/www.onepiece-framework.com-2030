@@ -76,11 +76,13 @@ function GitSubmoduleRepository()
 
 		//	Check if the local repository exists.
 		if( GitInitLocal($local) ){
+			/* This process has been moved inside GitInitLocal().
 			//	Add remote and fetch.
 			$local = escapeshellarg($local);
 			if( Execute("git remote add local {$local}") ){
 				Execute("git fetch local");
 			}
+			*/
 		}
 	}
 
