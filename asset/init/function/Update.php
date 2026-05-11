@@ -67,7 +67,13 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 		if( file_exists('.gitmodules') ){
 			$save_dir = getcwd();
 			foreach( GitSubmoduleConfig('.gitmodules', getcwd()) as $config ){
+				//	Check if exists.
+				if( empty($config['path']) ){
+					continue;
+				}
+				//	Change directory.
 				chdir($config['path']);
+				//	Fetch and pull.
 				if( Execute("git fetch {$target}") ){
 					Execute("git pull {$remote} {$branch}");
 				}
