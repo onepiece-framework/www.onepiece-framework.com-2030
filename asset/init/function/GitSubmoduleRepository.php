@@ -89,6 +89,7 @@ function GitSubmoduleRepository()
 	//	ssh
 	if( Request('ssh') ){
 		$host = Request('host',   'repo');
+		//	Keep "~" for SSH remote paths; Git/SSH expands it on the remote host.
 		$dir  = Request('dir' , '~/repo');
 		$url  = "{$host}:{$dir}/{$path}";
 		$host = escapeshellarg($host);
