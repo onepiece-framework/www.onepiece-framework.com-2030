@@ -39,6 +39,7 @@ function GitSubmoduleRepository()
 	static $dir = null;
 	if( $dir === null ){
 		$dir = Request('dir','~/repo');
+		/* This proccess are move inside GitInitLocal()
 		if( $dir[0] === '~' ){
 			if( $home = $_SERVER['HOME'] ?? getenv('HOME') ?? null ){
 				$dir  = $home.substr($dir, 1);
@@ -47,6 +48,7 @@ function GitSubmoduleRepository()
 				exit(__LINE__);
 			}
 		}
+		*/
 		$dir = rtrim($dir, '/');
 	}
 
