@@ -29,6 +29,16 @@ require_once(__DIR__.'/Execute.php');
  */
 function GitInitLocal( string $path ) : bool
 {
+	//	Convert to HOME directory.
+	if( $path[0] === '~' ){
+		if( $home = $_SERVER['HOME'] ?? getenv('HOME') ?? null ){
+			$path = $home.substr($path, 1);
+		}else{
+			echo "\n The home directory variable was not found. \n\n";
+			exit(__LINE__);
+		}
+	}
+
 	//	Check if exists directory.
 	if(!file_exists($path) ){
 		//  Create directory
