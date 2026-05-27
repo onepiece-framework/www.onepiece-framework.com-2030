@@ -60,7 +60,7 @@ function Update( string $type, string $name, array $config, bool $init ) : bool
 
 		//	Pull
 		if( Request('pull', '1') ){
-			`git pull {$remote} {$branch}`;
+			`git pull --rebase {$remote} {$branch}`;
 		}
 
 		//	Submodule
