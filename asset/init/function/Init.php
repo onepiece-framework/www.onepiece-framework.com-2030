@@ -139,6 +139,9 @@ function Init( string $type, string $name, array $config ) : bool
 				continue;
 			}
 
+			//	Set hooks path.
+			GitHooks();
+
 			//	Add another remote.
 			GitSubmoduleRepository();
 
