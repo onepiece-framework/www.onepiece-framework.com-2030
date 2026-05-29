@@ -76,6 +76,9 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Change clone URL scheme: https://github.com/owner/repo.git --> git@github.com:owner/repo.git
 	if( Request('scheme') === 'ssh' ){
 		$url = preg_replace('|^https://github\.com/([^/]+/[^/]+\.git)$|', 'git@github.com:$1', $url);
+		if( isset($onepie) ){
+			$onepie = preg_replace('|^https://github\.com/([^/]+/[^/]+\.git)$|', 'git@github.com:$1', $onepie);
+		}
 	}
 
 	//	Change directory.
