@@ -121,6 +121,7 @@ function Init( string $type, string $name, array $config ) : bool
 	//	Add original remote.
 	if( $onepie ?? null ){
 		exec("git remote add onepie {$onepie}");
+		exec("git fetch onepie {$depth}");
 	}
 
 	//	Set hooks path.
