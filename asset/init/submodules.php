@@ -40,8 +40,10 @@ chdir(_ROOT_GIT_);
 	include("{$git_root}/asset/config/op.php");
 })(_ROOT_GIT_);
 
+/*
 //	Set the Git hooks
 GitHooks();
+*/
 
 //	Change the github owner name.
 GitSubmoduleGithub();
@@ -54,3 +56,6 @@ GitSubmoduleForeach(_ROOT_GIT_);
 
 //	Unit, Module, Layout, WebPack
 include(__DIR__.'/update.php');
+
+//	Set the Git hooks
+GitHooks();
